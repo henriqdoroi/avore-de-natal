@@ -306,7 +306,7 @@
             try {
                 var resp = await fetch('/api/pix/status?id=' + encodeURIComponent(transactionId), { cache: 'no-store' });
 
-                if (resp.status === 429) {
+                if (resp.status === 429 || !resp.ok) {
                     intervaloAtual = Math.min(intervaloAtual * 2, INTERVALO_MAXIMO);
                     return agendar();
                 }
@@ -427,7 +427,7 @@
                 });
                 var dados = await resp.json();
 
-                if (!resp.ok || !dados || dados.success !== true || !dados.transactionId) {
+                if (!resp.ok || !dados || dados.success !== true || !dados.transactionId || !dados.copyPaste) {
                     return exibirErro(
                         (dados && dados.message) || 'Não foi possível gerar o Pix. Tente novamente.',
                         dados && dados.field,
