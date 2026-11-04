@@ -6,7 +6,7 @@ function send(res, status, body) {
 }
 
 function digits(value) {
-  return String(value || "").replace(/\\D/g, "");
+  return String(value || "").replace(/\D/g, "");
 }
 
 module.exports = async function handler(req, res) {
@@ -31,7 +31,7 @@ module.exports = async function handler(req, res) {
   if (customerName.length < 3) {
     return send(res, 400, { success: false, field: "name", message: "Informe o nome completo." });
   }
-  if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(customerEmail)) {
+  if (!/^[^\s@]+@[^\s@]+\\.[^\s@]+$/.test(customerEmail)) {
     return send(res, 400, { success: false, field: "email", message: "Informe um e-mail válido." });
   }
   if (customerCpfCnpj.length !== 11 && customerCpfCnpj.length !== 14) {
