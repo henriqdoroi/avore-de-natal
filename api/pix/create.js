@@ -1,5 +1,5 @@
 const SHADOWPAY_BASE_URL = "https://shadowpay-backend.onrender.com/api/v1";
-const PRODUCT_AMOUNT = Number(process.env.PIX_AMOUNT || "177.87");
+const PRODUCT_AMOUNT = 177.87;
 
 function send(res, status, body) {
   return res.status(status).setHeader("Cache-Control", "no-store").json(body);
@@ -53,7 +53,7 @@ module.exports = async function handler(req, res) {
     description: "Pedido Árvore de Natal 2,10m AQUATTRO",
     externalReference,
     ...(utmSource ? { utmSource } : {}),
-    ...(process.env.SHADOWPAY_PRODUCT_ID ? { productId: process.env.SHADOWPAY_PRODUCT_ID } : {})
+    productId: "arvore-natal-2-10m-aquattro"
   };
 
   try {
