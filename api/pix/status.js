@@ -12,11 +12,11 @@ module.exports = async function handler(req, res) {
 
   const secret = process.env.SHADOWPAY_SECRET_KEY;
   if (!secret || !secret.startsWith("sk_live_")) {
-    return send(res, 500, { status: "ERROR", message: "A chave da ShadowPay não está configurada na Vercel." });
+    return send(res, 500, { status: "ERROR", message: "A chave da ShadowPay não está configurada neste ambiente." });
   }
 
   const id = String(req.query && req.query.id || "").trim();
-  if (!/^[a-zA-Z0-9-]{8,100}$/.test(id)) {
+  if (!/^[a-zA-Z0-9_-]{6,128}$/.test(id)) {
     return send(res, 400, { status: "ERROR", message: "ID de cobrança inválido." });
   }
 
@@ -32,10 +32,10 @@ module.exports = async function handler(req, res) {
 
     const result = await gatewayResponse.json().catch(() => ({}));
     if (!gatewayResponse.ok || result.success !== true || !result.data) {
-      console.error("ShadowPay status lookup failed:", gatewayResponse.status, result);
+      console.error("ShadowPay status lookup failed:", gatewayResponse.status);
       return send(res, gatewayResponse.status >= 400 && gatewayResponse.status < 500 ? gatewayResponse.status : 502, {
         status: "ERROR",
-        message: "Não foi possível consultar o pagamento."
+        message: "Não foi possível consultar o pagamento. A verificação será tentada novamente."
       });
     }
 
@@ -45,12 +45,17 @@ module.exports = async function handler(req, res) {
       approved: "PAID",
       expired: "CANCELLED",
       refunded: "REFUNDED",
-      chargeback: "CANCELLED"
+      chargeback: "REFUNDED"
     };
+    const mappedStatus = statusMap[originalStatus];
+    if (!mappedStatus) {
+      console.error("ShadowPay returned an unknown charge status:", originalStatus || "(empty)");
+      return send(res, 502, { status: "ERROR", message: "A ShadowPay retornou um status de pagamento desconhecido." });
+    }
 
-    return send(res, 200, { status: statusMap[originalStatus] || "PENDING" });
+    return send(res, 200, { status: mappedStatus });
   } catch (error) {
-    console.error("ShadowPay status error:", error);
+    console.error("ShadowPay status network error:", error && error.name);
     return send(res, 502, { status: "ERROR", message: "Falha ao consultar o pagamento." });
   }
 };
