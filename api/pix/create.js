@@ -7,12 +7,16 @@ function send(res, status, body) {
 }
 
 function digits(value) {
-  return String(value || "").replace(/\\D/g, "");
+  return String(value || "").replace(/[^0-9]/g, "");
+}
+
+function allSame(value) {
+  return new Set(value).size === 1;
 }
 
 function validCpf(value) {
   const cpf = digits(value);
-  if (cpf.length !== 11 || /^(\\d)\\1{10}$/.test(cpf)) return false;
+  if (cpf.length !== 11 || allSame(cpf)) return false;
   let sum = 0;
   for (let i = 0; i < 9; i++) sum += Number(cpf[i]) * (10 - i);
   let digit = (sum * 10) % 11;
@@ -27,7 +31,7 @@ function validCpf(value) {
 
 function validCnpj(value) {
   const cnpj = digits(value);
-  if (cnpj.length !== 14 || /^(\\d)\\1{13}$/.test(cnpj)) return false;
+  if (cnpj.length !== 14 || allSame(cnpj)) return false;
   const calc = (base, weights) => {
     const sum = weights.reduce((total, weight, index) => total + Number(base[index]) * weight, 0);
     const remainder = sum % 11;
@@ -54,11 +58,13 @@ module.exports = async function handler(req, res) {
   const documentNumber = digits(customer.document && customer.document.number);
   const customerName = String(customer.name || "").trim();
   const customerEmail = String(customer.email || "").trim();
+  const at = customerEmail.indexOf("@");
+  const dot = customerEmail.lastIndexOf(".");
 
   if (customerName.length < 3) {
     return send(res, 400, { success: false, field: "name", message: "Informe o nome completo." });
   }
-  if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(customerEmail)) {
+  if (at < 1 || dot < at + 2 || dot === customerEmail.length - 1 || customerEmail.includes(" ")) {
     return send(res, 400, { success: false, field: "email", message: "Informe um e-mail válido." });
   }
   if (!(documentNumber.length === 11 ? validCpf(documentNumber) : validCnpj(documentNumber))) {
