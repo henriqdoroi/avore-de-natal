@@ -25,4 +25,4 @@ Depois de salvar as variáveis, faça um novo deploy para aplicá-las.
 - O valor da cobrança é definido no servidor por `PIX_AMOUNT`, não pelo navegador.
 - O backend traduz `approved` para `PAID`, `pending` para `PENDING`, `expired`/`chargeback` para `CANCELLED` e `refunded` para `REFUNDED`.
 - A página de pagamento mostra o QR Code e o código copia-e-cola devolvidos pela ShadowPay.
-- A documentação fornecida não descreve webhook; a confirmação da tela é feita por consulta de status a cada 5 segundos.
+- A documentação fornecida não descreve webhook; a confirmação da tela é feita por consulta de status a cada 5 segundos.\n- Não existe uma página de upsell identificada neste repositório neste momento; por isso, nenhuma variável de URL de upsell é exigida ou configurada.
