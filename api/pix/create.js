@@ -1,5 +1,5 @@
 const SHADOWPAY_BASE_URL = "https://shadowpay-backend.onrender.com/api/v1";
-const PRODUCT_AMOUNT = 177.87;
+const PRODUCT_AMOUNT = 47.90;
 const PRODUCT_ID = "arvore-natal-2-10m-aquattro";
 
 function send(res, status, body) {

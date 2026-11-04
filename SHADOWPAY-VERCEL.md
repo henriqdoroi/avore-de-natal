@@ -21,7 +21,7 @@ Configure-a nos ambientes em que pretende testar/publicar (Production, Preview e
 ## Produto e valor
 
 - Produto: `arvore-natal-2-10m-aquattro`
-- Valor fixo no servidor: **R$ 177,87**
+- Valor fixo no servidor: **R$ 47,90**
 - O navegador não escolhe nem pode alterar o valor cobrado.
 - O servidor confere se o valor devolvido pela ShadowPay corresponde ao preço do checkout.
 
