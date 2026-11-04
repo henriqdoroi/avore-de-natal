@@ -1,28 +1,37 @@
 # Integração PIX ShadowPay (Vercel)
 
-O checkout usa Vercel Serverless Functions em JavaScript:
+O checkout utiliza Vercel Serverless Functions em JavaScript:
 
-- `POST /api/pix/create`: cria cobrança em `POST https://shadowpay-backend.onrender.com/api/v1/pix/charges`.
-- `GET /api/pix/status?id=...`: consulta `GET /api/v1/pix/charges/{id}`.
-- `GET /api/pix/ping`: testa a autenticação em `GET https://shadowpay-backend.onrender.com/api/v1/ping`.
+- `POST /api/pix/create`: cria uma cobrança PIX na ShadowPay.
+- `GET /api/pix/status?id=...`: consulta o status diretamente na ShadowPay.
+- `GET /api/pix/ping`: verifica a autenticação da chave.
 
-## Variáveis de ambiente da Vercel
+## Única variável de ambiente
 
-Configure em **Project → Settings → Environment Variables**:
+Configure somente:
 
 | Nome | Valor |
 |---|---|
-| `SHADOWPAY_SECRET_KEY` | Sua chave secreta `sk_live_...` |
-| `PIX_AMOUNT` | `177.87` (valor em reais; ajuste se o preço do produto mudar) |
-| `SHADOWPAY_PRODUCT_ID` | Opcional: ID do produto cadastrado na ShadowPay |
-| `PIX_UPSELL_URL` | Opcional: URL HTTPS do upsell, aberta somente após status `approved` |
+| `SHADOWPAY_SECRET_KEY` | Chave secreta `sk_live_...` |
 
-Depois de salvar as variáveis, faça um novo deploy para aplicá-las.
+A variável é lida exclusivamente no servidor. Nunca coloque a chave no HTML, no navegador ou em variáveis com prefixo público.
 
-## Observações
+Configure-a nos ambientes em que pretende testar/publicar (Production, Preview e Development). A variável existente em Production pode ser mantida; não é necessário criar outras variáveis para preço, produto ou upsell.
 
-- A chave secreta só é lida no servidor. Não use prefixo `NEXT_PUBLIC_` nem a coloque no HTML.
-- O valor da cobrança é definido no servidor por `PIX_AMOUNT`, não pelo navegador.
-- O backend traduz `approved` para `PAID`, `pending` para `PENDING`, `expired`/`chargeback` para `CANCELLED` e `refunded` para `REFUNDED`.
-- A página de pagamento mostra o QR Code e o código copia-e-cola devolvidos pela ShadowPay.
-- A documentação fornecida não descreve webhook; a confirmação da tela é feita por consulta de status a cada 5 segundos.\n- Não existe uma página de upsell identificada neste repositório neste momento; por isso, nenhuma variável de URL de upsell é exigida ou configurada.
+## Produto e valor
+
+- Produto: `arvore-natal-2-10m-aquattro`
+- Valor fixo no servidor: **R$ 177,87**
+- O navegador não escolhe nem pode alterar o valor cobrado.
+- O servidor confere se o valor devolvido pela ShadowPay corresponde ao preço do checkout.
+
+Se o preço exibido na página mudar, atualize também `PRODUCT_AMOUNT` em `api/pix/create.js`.
+
+## Fluxo e segurança
+
+- O servidor valida nome, e-mail e CPF/CNPJ.
+- O checkout só exibe o pagamento quando a ShadowPay devolve um código Pix copia-e-cola válido.
+- A confirmação é feita por consulta de status a cada 5 segundos; a documentação da API fornecida não descreve webhook.
+- `approved` é convertido em `PAID`; `pending` em `PENDING`; `expired` em `CANCELLED`; `refunded` e `chargeback` em `REFUNDED`.
+- Status desconhecidos e falhas de consulta não são tratados como pagamento aprovado.
+- Não existe uma rota de upsell confirmada neste repositório. Por isso, o checkout não redireciona para uma página inventada após o pagamento.
