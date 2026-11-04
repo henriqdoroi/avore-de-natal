@@ -576,7 +576,7 @@
             e.target.value = e.target.value.toUpperCase().replace(/[^A-Za-z]/g, '').slice(0, 2);
         });
 
-        atualizarPagamento();
+        // Checkout configurado exclusivamente para Pix.
         aplicarErroApi();
         carregarCorSelecionada();
     })();
