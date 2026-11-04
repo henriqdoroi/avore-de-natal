@@ -1,0 +1,478 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento via Pix - Árvore de Natal 2,10m AQUATTRO | Magalu</title>
+    <meta name="description" content="Pague com Pix usando o código copia e cola.">
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/jpeg" href="../images/623609fda92453760ebe2b5b71acc97a-2.jpg">
+    <link rel="stylesheet" href="../css/all.min-2.css">
+    <link rel="stylesheet" href="../css/style-2.css">
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1669086081242260');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="../tr-3?id=1669086081242260&ev=PageView&noscript=1"></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body class="ck-body">
+
+    <header class="ck-header">
+        <div class="ck-header-top">
+            <a href="/" class="ck-brand">
+                <img src="https://m.magazineluiza.com.br/mixer-web/static/shared/logo/lu-logo-avatar.png" alt="Lu do Magalu">
+                <span>magalu</span>
+            </a>
+            <div class="ck-secure">
+                <i class="fa-solid fa-lock"></i><span>Ambiente 100% seguro</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="px-container">
+
+        <!-- CARREGANDO / CRIANDO COBRANÇA -->
+        <section class="px-card" id="px-loading">
+            <div class="px-center">
+                <div class="px-spinner"></div>
+                <h2>Gerando seu Pix...</h2>
+                <p>Aguarde alguns instantes enquanto preparamos o código Pix.</p>
+            </div>
+        </section>
+
+        <!-- PAGAMENTO -->
+        <section class="px-card" id="px-pay" style="display: none;">
+            <div class="px-status" id="px-status-badge">
+                <span class="px-spinner"></span><span id="px-status-text">Aguardando pagamento</span>
+            </div>
+
+            <div class="px-amount">
+                <small>Valor a pagar</small>
+                <strong id="px-amount">R$ 0,00</strong>
+            </div>
+
+            <div class="px-copy">
+                <label for="px-copy-input">Código Pix copia e cola</label>
+                <div class="px-copy-row">
+                    <input type="text" id="px-copy-input" readonly="" value="">
+                    <button type="button" class="px-btn-copy" id="px-btn-copy">Copiar</button>
+                </div>
+                <p class="ck-hint" style="margin-top: 8px;">Abra o app do seu banco, escolha Pix e use a opção <strong>Pix Copia e Cola</strong>.</p>
+            </div>
+
+            <div class="px-timer" id="px-timer"></div>
+
+            <div class="px-steps">
+                <h3>Como pagar</h3>
+                <ol>
+                    <li>Abra o app do seu banco ou carteira digital.</li>
+                    <li>Escolha pagar com <strong>Pix</strong>.</li>
+                    <li>Selecione <strong>Pix Copia e Cola</strong> e cole o código.</li>
+                    <li>Confirme o valor de <strong id="px-amount-steps">R$ 0,00</strong> e finalize.</li>
+                </ol>
+            </div>
+
+            <div class="px-actions">
+                <a href="/checkout" class="px-btn-ghost"><i class="fa-solid fa-arrow-left"></i> Voltar e revisar dados</a>
+            </div>
+        </section>
+
+        <!-- PAGAMENTO CONFIRMADO -->
+        <section class="px-card" id="px-success" style="display: none;">
+            <div class="px-center">
+                <i class="fa-solid fa-circle-check" style="color: var(--magalu-green);"></i>
+                <h2>Pagamento confirmado!</h2>
+                <p>Recebemos seu Pix com sucesso. Seu pedido já está sendo processado e você receberá as próximas atualizações por e-mail.</p>
+                <div class="px-actions">
+                    <a href="/" class="px-btn-main"><i class="fa-solid fa-bag-shopping"></i> Voltar para a loja</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPIRADO / CANCELADO -->
+        <section class="px-card" id="px-cancelled" style="display: none;">
+            <div class="px-center">
+                <i class="fa-solid fa-circle-exclamation" style="color: #d97706;"></i>
+                <h2 id="px-cancelled-title">Este Pix expirou</h2>
+                <p id="px-cancelled-msg">O prazo para pagamento acabou e a cobrança foi cancelada. Gere um novo Pix para concluir sua compra.</p>
+                <div class="px-actions">
+                    <button type="button" class="px-btn-main" id="px-btn-novo"><i class="fa-solid fa-rotate-right"></i> Gerar novo Pix</button>
+                    <a href="/checkout" class="px-btn-ghost"><i class="fa-solid fa-arrow-left"></i> Voltar e revisar dados</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ERRO -->
+        <section class="px-card" id="px-error" style="display: none;">
+            <div class="px-center">
+                <i class="fa-solid fa-triangle-exclamation" style="color: #dc2626;"></i>
+                <h2>Não foi possível gerar o Pix</h2>
+                <p id="px-error-msg">Tente novamente em instantes.</p>
+                <p id="px-error-detail" style="display: none; font-size: 12px; color: var(--text-muted); margin-top: 6px;"></p>
+                <div class="px-actions">
+                    <button type="button" class="px-btn-main" id="px-btn-recarregar"><i class="fa-solid fa-rotate-right"></i> Gerar PIX novamente</button>
+                    <button type="button" class="px-btn-ghost" id="px-btn-corrigir"><i class="fa-solid fa-pen-to-square"></i> Corrigir dados</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+    (function () {
+        'use strict';
+
+        var CHAVE_PAYLOAD = 'ck_pix_payload';
+        var CHAVE_TRANSACAO = 'ck_pix_transacao';
+
+        var INTERVALO_POLLING = 5000;          // 5s (respeita o rate limit)
+        var INTERVALO_MAXIMO = 60000;          // teto do backoff
+        var LIMITE_POLLING = 30 * 60 * 1000;   // desiste após ~30 min
+
+        var $ = function (id) { return document.getElementById(id); };
+
+        var elLoading = $('px-loading');
+        var elPay = $('px-pay');
+        var elSuccess = $('px-success');
+        var elCancelled = $('px-cancelled');
+        var elError = $('px-error');
+        var elTimer = $('px-timer');
+        var elCopyInput = $('px-copy-input');
+        var elBtnCopy = $('px-btn-copy');
+        var elStatusText = $('px-status-text');
+
+        var transactionId = null;
+        var erroCampo = null;
+        var timerContador = null;
+        var timerPolling = null;
+        var intervaloAtual = INTERVALO_POLLING;
+        var inicioPolling = 0;
+        var parado = false;
+        var valorFinal = 0;
+
+        /* ---------- HELPERS ---------- */
+        function brl(centavos) {
+            var valor = (Number(centavos) || 0) / 100;
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function formatarTempo(ms) {
+            var total = Math.max(0, Math.floor(ms / 1000));
+            var h = Math.floor(total / 3600);
+            var m = Math.floor((total % 3600) / 60);
+            var s = total % 60;
+            var dois = function (n) { return String(n).padStart(2, '0'); };
+            return (h > 0 ? dois(h) + ':' : '') + dois(m) + ':' + dois(s);
+        }
+
+        function mostrar(el) {
+            [elLoading, elPay, elSuccess, elCancelled, elError].forEach(function (sec) {
+                sec.style.display = sec === el ? 'block' : 'none';
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function lerPayload() {
+            try {
+                var bruto = sessionStorage.getItem(CHAVE_PAYLOAD);
+                return bruto ? JSON.parse(bruto) : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function lerTransacao() {
+            try {
+                var bruto = sessionStorage.getItem(CHAVE_TRANSACAO);
+                return bruto ? JSON.parse(bruto) : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function salvarTransacao(dados) {
+            try { sessionStorage.setItem(CHAVE_TRANSACAO, JSON.stringify(dados)); } catch (e) {}
+        }
+
+        function limparTransacao() {
+            try { sessionStorage.removeItem(CHAVE_TRANSACAO); } catch (e) {}
+        }
+
+        /* ---------- COPIAR ---------- */
+        function copiarFallback(texto) {
+            var area = document.createElement('textarea');
+            area.value = texto;
+            area.setAttribute('readonly', '');
+            area.style.position = 'absolute';
+            area.style.left = '-9999px';
+            document.body.appendChild(area);
+            area.select();
+            area.setSelectionRange(0, area.value.length);
+            var ok = false;
+            try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+            document.body.removeChild(area);
+            if (!ok) throw new Error('Falha ao copiar.');
+        }
+
+        function feedbackCopiado() {
+            elBtnCopy.classList.add('copiado');
+            elBtnCopy.textContent = 'Copiado!';
+            setTimeout(function () {
+                elBtnCopy.classList.remove('copiado');
+                elBtnCopy.textContent = 'Copiar';
+            }, 2000);
+        }
+
+        async function copiarCodigo() {
+            var texto = elCopyInput.value;
+            if (!texto) return;
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(texto);
+                } else {
+                    copiarFallback(texto);
+                }
+                feedbackCopiado();
+            } catch (e) {
+                try {
+                    copiarFallback(texto);
+                    feedbackCopiado();
+                } catch (e2) {
+                    elCopyInput.select();
+                }
+            }
+        }
+
+        elBtnCopy.addEventListener('click', copiarCodigo);
+        elCopyInput.addEventListener('click', function () { elCopyInput.select(); });
+
+        /* ---------- CONTAGEM REGRESSIVA ---------- */
+        function iniciarContador(expiresAt) {
+            clearTimeout(timerContador);
+            var fim = expiresAt ? new Date(expiresAt).getTime() : 0;
+            if (!fim || isNaN(fim)) {
+                elTimer.style.display = 'none';
+                return;
+            }
+            elTimer.style.display = 'block';
+
+            function tick() {
+                var restante = fim - Date.now();
+                if (restante <= 0) {
+                    elTimer.innerHTML = 'Este Pix expirou.';
+                    return cancelar('expirado');
+                }
+                elTimer.innerHTML = 'Este Pix expira em <strong>' + formatarTempo(restante) + '</strong>';
+                timerContador = setTimeout(tick, 1000);
+            }
+            tick();
+        }
+
+        /* ---------- POLLING ---------- */
+        function pararTudo() {
+            parado = true;
+            clearTimeout(timerPolling);
+            clearTimeout(timerContador);
+        }
+
+        function agendar() {
+            if (parado) return;
+            if (Date.now() - inicioPolling > LIMITE_POLLING) {
+                elStatusText.textContent = 'Verificação pausada';
+                return;
+            }
+            timerPolling = setTimeout(consultar, intervaloAtual);
+        }
+
+        async function consultar() {
+            if (parado || document.hidden || !transactionId) return;
+
+            try {
+                var resp = await fetch('/api/pix/status?id=' + encodeURIComponent(transactionId), { cache: 'no-store' });
+
+                if (resp.status === 429) {
+                    intervaloAtual = Math.min(intervaloAtual * 2, INTERVALO_MAXIMO);
+                    return agendar();
+                }
+
+                var dados = await resp.json();
+
+                if (dados && dados.status === 'PAID') return confirmarPagamento();
+                if (dados && (dados.status === 'CANCELLED' || dados.status === 'REFUNDED')) {
+                    return cancelar(dados.status === 'REFUNDED' ? 'estornado' : 'cancelado');
+                }
+
+                intervaloAtual = INTERVALO_POLLING;
+            } catch (e) {
+                // Falha de rede: mantém o intervalo e tenta de novo.
+            }
+            agendar();
+        }
+
+        function iniciarPolling() {
+            parado = false;
+            intervaloAtual = INTERVALO_POLLING;
+            inicioPolling = Date.now();
+            agendar();
+        }
+
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && !parado && transactionId) {
+                clearTimeout(timerPolling);
+                consultar();
+            }
+        });
+
+        /* ---------- ESTADOS ---------- */
+        function confirmarPagamento() {
+            pararTudo();
+
+            // Meta Pixel: Purchase (Confirmação real)
+            if (typeof fbq !== 'undefined' && valorFinal > 0) {
+                fbq('track', 'Purchase', {
+                    value: valorFinal,
+                    currency: 'BRL',
+                    status: 'confirmed'
+                });
+            }
+
+            limparTransacao();
+            mostrar(elSuccess);
+        }
+
+        function cancelar(motivo) {
+            pararTudo();
+            limparTransacao();
+            if (motivo === 'estornado') {
+                $('px-cancelled-title').textContent = 'Pagamento estornado';
+                $('px-cancelled-msg').textContent = 'Este Pix foi estornado. Gere um novo Pix para concluir sua compra.';
+            } else {
+                $('px-cancelled-title').textContent = 'Este Pix expirou';
+                $('px-cancelled-msg').textContent = 'O prazo para pagamento acabou e a cobrança foi cancelada. Gere um novo Pix para concluir sua compra.';
+            }
+            mostrar(elCancelled);
+        }
+
+        function exibirErro(mensagem, campo, detalhe) {
+            pararTudo();
+            erroCampo = campo || null;
+            $('px-error-msg').textContent = mensagem || 'Tente novamente em instantes.';
+
+            var elDetalhe = $('px-error-detail');
+            if (detalhe) {
+                elDetalhe.textContent = detalhe;
+                elDetalhe.style.display = 'block';
+            } else {
+                elDetalhe.textContent = '';
+                elDetalhe.style.display = 'none';
+            }
+
+            mostrar(elError);
+        }
+
+        function renderizarPagamento(dados) {
+            valorFinal = (Number(dados.amount) || 0) / 100;
+            elCopyInput.value = dados.copyPaste || '';
+            $('px-amount').textContent = brl(dados.amount);
+            $('px-amount-steps').textContent = brl(dados.amount);
+
+            mostrar(elPay);
+            iniciarContador(dados.expiresAt);
+            iniciarPolling();
+        }
+
+        /* ---------- CRIAÇÃO DA COBRANÇA ---------- */
+        async function gerarPix() {
+            var payload = lerPayload();
+            if (!payload || !payload.items || !payload.customer) {
+                window.location.replace('/checkout');
+                return;
+            }
+
+            pararTudo();
+            mostrar(elLoading);
+
+            try {
+                var resp = await fetch('/api/pix/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                var dados = await resp.json();
+
+                if (!resp.ok || !dados || dados.success !== true || !dados.transactionId) {
+                    return exibirErro(
+                        (dados && dados.message) || 'Não foi possível gerar o Pix. Tente novamente.',
+                        dados && dados.field,
+                        dados && dados.error
+                    );
+                }
+
+                transactionId = dados.transactionId;
+                salvarTransacao({
+                    transactionId: transactionId,
+                    copyPaste: dados.copyPaste,
+                    expiresAt: dados.expiresAt,
+                    amount: dados.amount
+                });
+                renderizarPagamento(dados);
+            } catch (e) {
+                exibirErro('Falha de conexão. Verifique sua internet e tente novamente.');
+            }
+        }
+
+        $('px-btn-novo').addEventListener('click', function () {
+            limparTransacao();
+            gerarPix();
+        });
+        $('px-btn-recarregar').addEventListener('click', gerarPix);
+
+        /* Volta ao checkout guardando o campo com problema para destacar lá. */
+        $('px-btn-corrigir').addEventListener('click', function () {
+            if (erroCampo) {
+                try {
+                    sessionStorage.setItem('ck_pix_erro', JSON.stringify({
+                        campo: erroCampo,
+                        mensagem: $('px-error-msg').textContent
+                    }));
+                } catch (e) {}
+            }
+            window.location.href = '/checkout';
+        });
+
+        /* ---------- INICIALIZAÇÃO ---------- */
+        (function iniciar() {
+            var payload = lerPayload();
+            if (!payload || !payload.items || !payload.customer) {
+                window.location.replace('/checkout');
+                return;
+            }
+
+            var salva = lerTransacao();
+            var aindaValida = salva && salva.transactionId &&
+                (!salva.expiresAt || new Date(salva.expiresAt).getTime() > Date.now());
+
+            if (aindaValida) {
+                transactionId = salva.transactionId;
+                renderizarPagamento(salva);
+            } else {
+                limparTransacao();
+                gerarPix();
+            }
+        })();
+    })();
+    </script>
+
+</body>
+</html>
