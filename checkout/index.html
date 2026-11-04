@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finalizar compra - Árvore de Natal 2,10m AQUATTRO | Magalu</title>
-    <meta name="description" content="Finalize sua compra com segurança. Pague no Pix ou no Cartão de crédito em até 10x sem juros.">
+    <meta name="description" content="Finalize sua compra com segurança. Pague via Pix.">
     <meta name="robots" content="noindex">
     <link rel="icon" type="image/jpeg" href="images/623609fda92453760ebe2b5b71acc97a-1.jpg">
     <link rel="stylesheet" href="css/all.min-1.css">
@@ -151,15 +151,7 @@
                                 <i class="fa-solid fa-qrcode"></i>
                                 <span>
                                     <strong>Pix</strong>
-                                    <small>R$ 177,87 à vista · aprovação imediata</small>
-                                </span>
-                            </label>
-                            <label class="ck-pay-option" for="pay-cartao">
-                                <input type="radio" name="pagamento" id="pay-cartao" value="cartao">
-                                <i class="fa-solid fa-credit-card"></i>
-                                <span>
-                                    <strong>Cartão de crédito</strong>
-                                    <small>R$ 207,87 em até 10x sem juros</small>
+                                    <small>R$ 177,87 à vista · aprovação após confirmação</small>
                                 </span>
                             </label>
                         </div>
@@ -207,7 +199,6 @@
         'use strict';
 
         var CHAVE_PIX_PAYLOAD = 'ck_pix_payload';
-        var CHAVE_CARTAO_PAYLOAD = 'ck_cartao_payload';
         var CHAVE_PIX_ERRO = 'ck_pix_erro';
         var CHAVES_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 
@@ -445,32 +436,11 @@
 
         elBtnCep.addEventListener('click', buscarCep);
 
-        /* ---------- PAGAMENTO ---------- */
-        function atualizarPagamento() {
-            var selecionado = document.querySelector('input[name="pagamento"]:checked').value;
-
-            document.querySelectorAll('.ck-pay-option').forEach(function (opt) {
-                opt.classList.toggle('active', opt.querySelector('input').checked);
-            });
-
-            var preco = selecionado === 'cartao' ? 207.87 : 177.87;
-            var precoFormatado = 'R$ ' + preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-            
-            $('summary-subtotal').textContent = precoFormatado;
-            $('summary-total').textContent = precoFormatado;
-
-            $('ck-payment-note').textContent = selecionado === 'cartao'
-                ? 'No próximo passo você informa os dados do cartão. Total de ' + precoFormatado + ' em até 10x sem juros.'
-                : 'Pagamento à vista no Pix com aprovação imediata.';
-        }
-
-        document.querySelectorAll('input[name="pagamento"]').forEach(function (radio) {
-            radio.addEventListener('change', atualizarPagamento);
-        });
+        /* Pagamento exclusivamente por Pix. */
 
         /* ---------- COLETA E VALIDAÇÃO ---------- */
         function coletarDados() {
-            var pagamento = document.querySelector('input[name="pagamento"]:checked').value;
+            var pagamento = 'pix';
             return {
                 nome: elNome.value.trim(),
                 cpf: elCpf.value.trim(),
@@ -536,7 +506,7 @@
 
         function montarPayload(d) {
             var documento = soDigitos(d.cpf);
-            var productId = d.pagamento === 'cartao' ? 'arvore-natal-2-10m-aquattro-cartao' : 'arvore-natal-2-10m-aquattro';
+            var productId = 'arvore-natal-2-10m-aquattro';
             return {
                 items: [{ id: productId, quantity: 1 }],
                 customer: {
@@ -563,11 +533,11 @@
 
         /* Guarda os dados e encaminha para a tela de pagamento escolhida. */
         function enviarPedido(dados) {
-            var chave = dados.pagamento === 'cartao' ? CHAVE_CARTAO_PAYLOAD : CHAVE_PIX_PAYLOAD;
+            var chave = CHAVE_PIX_PAYLOAD;
             try {
                 sessionStorage.setItem(chave, JSON.stringify(montarPayload(dados)));
             } catch (e) {}
-            window.location.href = dados.pagamento === 'cartao' ? '/checkout/cartao' : '/checkout/pix';
+            window.location.href = '/checkout/pix';
         }
 
         function finalizar() {
@@ -606,7 +576,7 @@
             e.target.value = e.target.value.toUpperCase().replace(/[^A-Za-z]/g, '').slice(0, 2);
         });
 
-        atualizarPagamento();
+        // Checkout configurado exclusivamente para Pix.
         aplicarErroApi();
         carregarCorSelecionada();
     })();
