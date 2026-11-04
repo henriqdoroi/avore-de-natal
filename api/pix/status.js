@@ -48,15 +48,7 @@ module.exports = async function handler(req, res) {
       chargeback: "CANCELLED"
     };
 
-    const response = { status: statusMap[originalStatus] || "PENDING" };
-    if (originalStatus === "approved" && process.env.PIX_UPSELL_URL) {
-      try {
-        const upsell = new URL(process.env.PIX_UPSELL_URL);
-        if (upsell.protocol === "https:") response.redirectUrl = upsell.toString();
-      } catch (_) {}
-    }
-
-    return send(res, 200, response);
+    return send(res, 200, { status: statusMap[originalStatus] || "PENDING" });
   } catch (error) {
     console.error("ShadowPay status error:", error);
     return send(res, 502, { status: "ERROR", message: "Falha ao consultar o pagamento." });
