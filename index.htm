@@ -8,6 +8,38 @@
     
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="icon" type="image/jpeg" href="images/623609fda92453760ebe2b5b71acc97a.jpg">
+    <script>
+      // Captura a atribuição já na landing page, antes do clique em Comprar.
+      // O checkout e a página Pix usam a mesma sessionStorage neste domínio.
+      (function () {
+        var keys = [
+          "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+          "fbclid", "ttclid", "gclid", "src", "sck"
+        ];
+        var storageKey = "ck_attribution";
+        try {
+          var saved = JSON.parse(sessionStorage.getItem(storageKey) || "{}");
+          if (!saved || typeof saved !== "object" || Array.isArray(saved)) saved = {};
+          var params = new URLSearchParams(window.location.search);
+          keys.forEach(function (key) {
+            var value = params.get(key);
+            if (value) saved[key] = value.slice(0, 255);
+          });
+          if (document.referrer) {
+            try {
+              var ref = new URL(document.referrer);
+              if ((ref.protocol === "http:" || ref.protocol === "https:") &&
+                  ref.origin !== window.location.origin) {
+                saved.referrer = ref.origin + ref.pathname;
+              }
+            } catch (e) {}
+          }
+          if (Object.keys(saved).length) {
+            sessionStorage.setItem(storageKey, JSON.stringify(saved));
+          }
+        } catch (e) {}
+      })();
+    </script>
 </head>
     <!-- Meta Pixel Code -->
     <script>
