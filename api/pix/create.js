@@ -75,8 +75,33 @@ module.exports = async function handler(req, res) {
     return send(res, 500, { success: false, message: "O valor fixo do produto está inválido." });
   }
 
-  const utm = body.utm || {};
-  const utmSource = String(utm.utm_source || utm.utmSource || "").slice(0, 200);
+  // Encaminha todas as UTMs e identificadores de clique coletados na página.
+  const utm = body.utm && typeof body.utm === "object" ? body.utm : {};
+  const pick = (...keys) => {
+    for (const key of keys) {
+      const value = utm[key];
+      if (typeof value !== "string" && typeof value !== "number") continue;
+      const clean = String(value)
+        .replace(/[\\u0000-\\u001F\\u007F]/g, "")
+        .trim()
+        .slice(0, 255);
+      if (clean && clean !== "null" && clean !== "undefined") return clean;
+    }
+    return undefined;
+  };
+  const tracking = {
+    utmSource: pick("utm_source", "utmSource"),
+    utmMedium: pick("utm_medium", "utmMedium"),
+    utmCampaign: pick("utm_campaign", "utmCampaign"),
+    utmContent: pick("utm_content", "utmContent"),
+    utmTerm: pick("utm_term", "utmTerm"),
+    fbclid: pick("fbclid"),
+    ttclid: pick("ttclid"),
+    gclid: pick("gclid"),
+    src: pick("src"),
+    sck: pick("sck"),
+    referer: pick("referrer", "referer")
+  };
   const chargePayload = {
     amount: Number(PRODUCT_AMOUNT.toFixed(2)),
     customerName,
@@ -84,7 +109,7 @@ module.exports = async function handler(req, res) {
     customerCpfCnpj: documentNumber,
     description: "Pedido Árvore de Natal 2,10m AQUATTRO",
     externalReference: "ARB-" + require("crypto").randomUUID(),
-    ...(utmSource ? { utmSource } : {}),
+    ...Object.fromEntries(Object.entries(tracking).filter(([, value]) => value !== undefined)),
     productId: PRODUCT_ID
   };
 
