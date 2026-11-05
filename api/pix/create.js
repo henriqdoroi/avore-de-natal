@@ -82,7 +82,7 @@ module.exports = async function handler(req, res) {
       const value = utm[key];
       if (typeof value !== "string" && typeof value !== "number") continue;
       const clean = String(value)
-        .replace(/[\\u0000-\\u001F\\u007F]/g, "")
+        .replace(/[\u0000-\u001F\u007F]/g, "")
         .trim()
         .slice(0, 255);
       if (clean && clean !== "null" && clean !== "undefined") return clean;
