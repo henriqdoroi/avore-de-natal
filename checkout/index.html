@@ -200,7 +200,27 @@
 
         var CHAVE_PIX_PAYLOAD = 'ck_pix_payload';
         var CHAVE_PIX_ERRO = 'ck_pix_erro';
-        var CHAVES_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        var CHAVES_ATRIBUICAO = [
+            'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+            'fbclid', 'ttclid', 'gclid', 'src', 'sck'
+        ];
+        var CHAVE_ATRIBUICAO_STORAGE = 'ck_attribution';
+
+        function lerAtribuicaoSalva() {
+            try {
+                return JSON.parse(sessionStorage.getItem(CHAVE_ATRIBUICAO_STORAGE) || '{}') || {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function salvarAtribuicao(atribuicao) {
+            try {
+                if (atribuicao && Object.keys(atribuicao).length) {
+                    sessionStorage.setItem(CHAVE_ATRIBUICAO_STORAGE, JSON.stringify(atribuicao));
+                }
+            } catch (e) {}
+        }
 
         /* Campo devolvido pelo back -> input correspondente nesta tela. */
         var CAMPO_PARA_INPUT = {
@@ -494,14 +514,26 @@
         }
 
         /* ---------- FINALIZAR ---------- */
-        function capturarUtms() {
+        function capturarAtribuicao() {
             var params = new URLSearchParams(window.location.search);
-            var utms = {};
-            CHAVES_UTM.forEach(function (chave) {
+            var atribuicao = lerAtribuicaoSalva();
+            // Um novo clique com qualquer parâmetro de campanha atualiza os campos
+            // recebidos, sem apagar outros campos preservados na mesma campanha.
+            CHAVES_ATRIBUICAO.forEach(function (chave) {
                 var valor = params.get(chave);
-                if (valor) utms[chave] = valor;
+                if (valor) atribuicao[chave] = valor.slice(0, 255);
             });
-            return utms;
+            if (document.referrer) {
+                try {
+                    var origem = new URL(document.referrer);
+                    if ((origem.protocol === 'http:' || origem.protocol === 'https:') &&
+                        origem.origin !== window.location.origin) {
+                        atribuicao.referrer = origem.origin + origem.pathname;
+                    }
+                } catch (e) {}
+            }
+            salvarAtribuicao(atribuicao);
+            return atribuicao;
         }
 
         function montarPayload(d) {
@@ -527,7 +559,7 @@
                     state: d.uf,
                     zipCode: soDigitos(d.cep)
                 },
-                utm: capturarUtms()
+                utm: capturarAtribuicao()
             };
         }
 
